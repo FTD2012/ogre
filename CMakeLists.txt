@@ -83,13 +83,16 @@ message(STATUS "Configuring OGRE ${OGRE_VERSION}")
 configure_file("${OGRE_TEMPLATES_DIR}/version.txt.in" "${PROJECT_BINARY_DIR}/version.txt" @ONLY)
 
 # determine if we are compiling for a 32bit or 64bit system
-include(CheckTypeSize)
-CHECK_TYPE_SIZE("void*" OGRE_PTR_SIZE BUILTIN_TYPES_ONLY)
-if (OGRE_PTR_SIZE EQUAL 8)
-  set(OGRE_PLATFORM_X64 TRUE)
-else ()
-  set(OGRE_PLATFORM_X64 FALSE)
-endif ()
+#include(CheckTypeSize)
+#CHECK_TYPE_SIZE("void*" OGRE_PTR_SIZE BUILTIN_TYPES_ONLY)
+#if (OGRE_PTR_SIZE EQUAL 8)
+#  set(OGRE_PLATFORM_X64 TRUE)
+#else ()
+#  set(OGRE_PLATFORM_X64 FALSE)
+#endif ()
+
+# compile for 64bit system
+set(OGRE_PLATFORM_X64 TRUE)
 
 if (WIN32)
   # Create debug libraries with _d postfix
@@ -282,9 +285,11 @@ elseif (APPLE AND NOT APPLE_IOS)
       endif()
     else()
       if(CMAKE_GENERATOR STREQUAL "Unix Makefiles")
-        set(CMAKE_OSX_ARCHITECTURES "${ARCHS_STANDARD_32_64_BIT}")
+#        set(CMAKE_OSX_ARCHITECTURES "${ARCHS_STANDARD_32_64_BIT}")
+         set(CMAKE_OSX_ARCHITECTURES "${ARCHS_STANDARD_64_BIT}")
       else()
-        set(CMAKE_OSX_ARCHITECTURES "$(ARCHS_STANDARD_32_64_BIT)")
+#        set(CMAKE_OSX_ARCHITECTURES "$(ARCHS_STANDARD_32_64_BIT)")
+         set(CMAKE_OSX_ARCHITECTURES "${ARCHS_STANDARD_64_BIT}")
       endif()
     endif()
   endif()
@@ -316,14 +321,18 @@ include(Dependencies)
 ######################################################################
 
 # Customise what to build
-option(OGRE_STATIC "Static build" FALSE)
-option(OGRE_ENABLE_PRECOMPILED_HEADERS "Use precompiled headers to speed up build" TRUE)
+#option(OGRE_STATIC "Static build" FALSE)
+#option(OGRE_ENABLE_PRECOMPILED_HEADERS "Use precompiled headers to speed up build" TRUE)
+option(OGRE_STATIC "Static build" TRUE)
+option(OGRE_ENABLE_PRECOMPILED_HEADERS "Use precompiled headers to speed up build" FALSE)
+
 set(OGRE_RESOURCEMANAGER_STRICT "2" CACHE STRING 
   "Make ResourceManager strict for faster operation. Possible values:
   0 - OFF search in all groups twice - for case sensitive and insensitive lookup [DEPRECATED]
   1 - PEDANTIC require an explicit resource group. Case sensitive lookup.
   2 - STRICT search in default group if not specified otherwise. Case sensitive lookup.
   ")
+
 set_property(CACHE OGRE_RESOURCEMANAGER_STRICT PROPERTY STRINGS 0 1 2)
 
 cmake_dependent_option(OGRE_BUILD_RENDERSYSTEM_D3D9 "Build Direct3D9 RenderSystem" TRUE "WIN32;DirectX9_FOUND;NOT WINDOWS_STORE;NOT WINDOWS_PHONE" FALSE)
