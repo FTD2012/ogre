@@ -82,17 +82,20 @@ message(STATUS "Configuring OGRE ${OGRE_VERSION}")
 # Configure version file for use by scripts
 configure_file("${OGRE_TEMPLATES_DIR}/version.txt.in" "${PROJECT_BINARY_DIR}/version.txt" @ONLY)
 
-# determine if we are compiling for a 32bit or 64bit system
-#include(CheckTypeSize)
-#CHECK_TYPE_SIZE("void*" OGRE_PTR_SIZE BUILTIN_TYPES_ONLY)
-#if (OGRE_PTR_SIZE EQUAL 8)
-#  set(OGRE_PLATFORM_X64 TRUE)
-#else ()
-#  set(OGRE_PLATFORM_X64 FALSE)
-#endif ()
+if (APPLE)
+	# compile for 64bit system
+	set(OGRE_PLATFORM_X64 TRUE)
+else ()
+	# determine if we are compiling for a 32bit or 64bit system
+	include(CheckTypeSize)
+	CHECK_TYPE_SIZE("void*" OGRE_PTR_SIZE BUILTIN_TYPES_ONLY)
+	if (OGRE_PTR_SIZE EQUAL 8)
+	set(OGRE_PLATFORM_X64 TRUE)
+	else ()
+	set(OGRE_PLATFORM_X64 FALSE)
+	endif ()
+endif()
 
-# compile for 64bit system
-set(OGRE_PLATFORM_X64 TRUE)
 
 if (WIN32)
   # Create debug libraries with _d postfix
@@ -321,10 +324,13 @@ include(Dependencies)
 ######################################################################
 
 # Customise what to build
-#option(OGRE_STATIC "Static build" FALSE)
-#option(OGRE_ENABLE_PRECOMPILED_HEADERS "Use precompiled headers to speed up build" TRUE)
-option(OGRE_STATIC "Static build" TRUE)
-option(OGRE_ENABLE_PRECOMPILED_HEADERS "Use precompiled headers to speed up build" FALSE)
+if (APPLE) 
+	option(OGRE_STATIC "Static build" TRUE)
+	option(OGRE_ENABLE_PRECOMPILED_HEADERS "Use precompiled headers to speed up build" FALSE)
+else ()
+	option(OGRE_STATIC "Static build" FALSE)
+	option(OGRE_ENABLE_PRECOMPILED_HEADERS "Use precompiled headers to speed up build" TRUE)
+endif()
 
 set(OGRE_RESOURCEMANAGER_STRICT "2" CACHE STRING 
   "Make ResourceManager strict for faster operation. Possible values:
