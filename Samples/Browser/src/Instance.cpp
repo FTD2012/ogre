@@ -34,12 +34,12 @@ void Instance::setup()
     camNode->setPosition(0, 0, 140);
     getRenderWindow()->addViewport(cam);
     
-    // add first enity with default postion
+    // add first entity with default position
     Ogre::Entity *ogreEntity = scnMgr->createEntity("ogrehead.mesh");
     Ogre::SceneNode *ogreNode = scnMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 0, 0));
     ogreNode->attachObject(ogreEntity);
     
-    // add second entity with prebuild position
+    // add second entity with position
     Ogre::Entity *ogreEntity2 = scnMgr->createEntity("ogrehead.mesh");
     Ogre::SceneNode *ogreNode2 = scnMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(84, 48, 0));
     ogreNode2->attachObject(ogreEntity2);
