@@ -15,6 +15,8 @@ set (HEADER_FILES
 	${PROJECT_SOURCE_DIR}/Samples/Common/include/SampleContext.h
 	${PROJECT_SOURCE_DIR}/Samples/Common/include/SamplePlugin.h
 	${PROJECT_SOURCE_DIR}/Samples/Common/include/SdkSample.h
+
+    ${PROJECT_SOURCE_DIR}/Samples/Browser/include/Instance.h
 )
 
 set(SOURCE_FILES ${PROJECT_SOURCE_DIR}/Samples/Browser/src/SampleBrowser.cpp)
