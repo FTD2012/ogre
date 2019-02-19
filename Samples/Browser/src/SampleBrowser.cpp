@@ -98,7 +98,7 @@ int main(int argc, char *argv[]) {
             // get -1, which is fine.
             startUpSampleIdx = Ogre::StringConverter::parseInt(Ogre::String(argv[1]), -1);
         }
-//        OgreBites::SampleBrowser_test brows (nograb, startUpSampleIdx);
+//        OgreBites::SampleBrowser brows (nograb, startUpSampleIdx);
 //        brows.go();
 
         Instance app;
