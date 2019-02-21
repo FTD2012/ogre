@@ -696,8 +696,7 @@ namespace OgreBites
         /*-----------------------------------------------------------------------------
           | Extends pointerReleased to inject mouse release into tray manager.
           -----------------------------------------------------------------------------*/
-        virtual bool mouseReleased(const MouseButtonEvent& evt)
-         {
+        virtual bool mouseReleased(const MouseButtonEvent& evt) {
             //OIS::PointerState state = evt.state;
             //transformInputState(state);
             //OIS::PointerEvent orientedEvt((OIS::Object*)evt.device, state);
@@ -728,8 +727,7 @@ namespace OgreBites
           | Extends pointerMoved to inject mouse position into tray manager, and checks
           | for mouse wheel movements to slide the carousel, because we can.
           -----------------------------------------------------------------------------*/
-        virtual bool mouseMoved(const MouseMotionEvent& evt)
-        {
+        virtual bool mouseMoved(const MouseMotionEvent& evt) {
             //OIS::PointerState state = evt.state;
             //transformInputState(state);
             //OIS::PointerEvent orientedEvt((OIS::Object*)evt.device, state);
@@ -762,8 +760,7 @@ namespace OgreBites
         //TODO: Handle iOS and Android.
         /** Mouse wheel scrolls the sample list.
          */
-        virtual bool mouseWheelRolled(const MouseWheelEvent& evt)
-        {
+        virtual bool mouseWheelRolled(const MouseWheelEvent& evt) {
             if (!(mCurrentSample && !mSamplePaused) && mTitleLabel->getTrayLocation() != TL_NONE
                 && mSampleMenu->getNumItems() != 0)
             {
@@ -817,32 +814,32 @@ namespace OgreBites
         /*-----------------------------------------------------------------------------
           | Extends setup to create dummy scene and tray interface.
           -----------------------------------------------------------------------------*/
-        virtual void setup()
-        {
+        virtual void setup() {
             ApplicationContext::setup();
             mWindow = getRenderWindow();
             addInputListener(this);
             if(mGrabInput) setWindowGrab();
-#ifdef OGRE_STATIC_LIB
-            mPluginNameMap["DefaultSamples"] = new DefaultSamplesPlugin();
-#   ifdef SAMPLES_INCLUDE_PLAYPEN
-            mPluginNameMap["PlaypenTests"] = new  PlaypenTestPlugin();
-#   endif
-#endif
-
-            Sample* startupSample = loadSamples();
-
-            // create template material for sample thumbnails
-            Ogre::MaterialPtr thumbMat = Ogre::MaterialManager::getSingleton().create("SdkTrays/SampleThumbnail", "Essential");
-            thumbMat->getTechnique(0)->getPass(0)->createTextureUnitState();
-
             setupWidgets();
-            windowResized(mWindow);   // adjust menus for resolution
+// #ifdef OGRE_STATIC_LIB
+//             mPluginNameMap["DefaultSamples"] = new DefaultSamplesPlugin();
+// #   ifdef SAMPLES_INCLUDE_PLAYPEN
+//             mPluginNameMap["PlaypenTests"] = new  PlaypenTestPlugin();
+// #   endif
+// #endif
 
-            // if this is our first time running, and there's a startup sample, run it
-            if (startupSample && mFirstRun){
-                runSample(startupSample);
-            }
+//             Sample* startupSample = loadSamples();
+
+//             // create template material for sample thumbnails
+//             Ogre::MaterialPtr thumbMat = Ogre::MaterialManager::getSingleton().create("SdkTrays/SampleThumbnail", "Essential");
+//             thumbMat->getTechnique(0)->getPass(0)->createTextureUnitState();
+
+//             setupWidgets();
+//             windowResized(mWindow);   // adjust menus for resolution
+
+//             // if this is our first time running, and there's a startup sample, run it
+//             if (startupSample && mFirstRun){
+//                 runSample(startupSample);
+//             }
         }
 
     protected:
@@ -1011,8 +1008,7 @@ namespace OgreBites
         /*-----------------------------------------------------------------------------
           | Unloads any loaded sample plugins.
           -----------------------------------------------------------------------------*/
-        virtual void unloadSamples()
-        {
+        virtual void unloadSamples() {
 #ifdef OGRE_STATIC_LIB
             const Ogre::Root::PluginInstanceList pluginList = mRoot->getInstalledPlugins();
             for(unsigned int i = 0; i < pluginList.size(); i++)
@@ -1094,14 +1090,13 @@ namespace OgreBites
             }
             mRendererMenu->setItems(rsNames);
 
-            populateSampleMenus();
+            // populateSampleMenus();
         }
 
         /*-----------------------------------------------------------------------------
           | Populates home menus with loaded samples.
           -----------------------------------------------------------------------------*/
-        virtual void populateSampleMenus()
-        {
+        virtual void populateSampleMenus() {
             Ogre::StringVector categories;
             for (std::set<Ogre::String>::iterator i = mSampleCategories.begin(); i != mSampleCategories.end(); i++)
                 categories.push_back(*i);
@@ -1116,8 +1111,7 @@ namespace OgreBites
         /*-----------------------------------------------------------------------------
           | Overrides to recover by last sample's index instead.
           -----------------------------------------------------------------------------*/
-        virtual void recoverLastSample()
-        {
+        virtual void recoverLastSample() {
             // restore the view while we're at it too
             mCategoryMenu->selectItem(mLastViewCategory);
             mSampleMenu->selectItem(mLastViewTitle);
@@ -1148,8 +1142,7 @@ namespace OgreBites
         /*-----------------------------------------------------------------------------
           | Extends reconfigure to save the view and the index of last sample run.
           -----------------------------------------------------------------------------*/
-        virtual void reconfigure(const Ogre::String& renderer, Ogre::NameValuePairList& options)
-        {
+        virtual void reconfigure(const Ogre::String& renderer, Ogre::NameValuePairList& options) {
             mLastViewCategory = mCategoryMenu->getSelectionIndex();
             mLastViewTitle = mSampleMenu->getSelectionIndex();
 
@@ -1171,8 +1164,7 @@ namespace OgreBites
         /*-----------------------------------------------------------------------------
           | Extends shutdown to destroy dummy scene and tray interface.
           -----------------------------------------------------------------------------*/
-        virtual void shutdown()
-        {
+        virtual void shutdown() {
 #if OGRE_PLATFORM == OGRE_PLATFORM_APPLE_IOS
             [mGestureView release];
 #endif
@@ -1203,8 +1195,7 @@ namespace OgreBites
         /*-----------------------------------------------------------------------------
           | Extend to temporarily hide a sample's overlays while in the pause menu.
           -----------------------------------------------------------------------------*/
-        virtual void pauseCurrentSample()
-        {
+        virtual void pauseCurrentSample() {
             SampleContext::pauseCurrentSample();
 
             Ogre::OverlayManager::OverlayMapIterator it = Ogre::OverlayManager::getSingleton().getOverlayIterator();
@@ -1224,8 +1215,7 @@ namespace OgreBites
         /*-----------------------------------------------------------------------------
         | Extend to unhide all of sample's temporarily hidden overlays.
           -----------------------------------------------------------------------------*/
-        virtual void unpauseCurrentSample()
-        {
+        virtual void unpauseCurrentSample() {
             SampleContext::unpauseCurrentSample();
 
             for (std::vector<Ogre::Overlay*>::iterator i = mHiddenOverlays.begin(); i != mHiddenOverlays.end(); i++)

@@ -16,8 +16,17 @@ set (HEADER_FILES
 	${PROJECT_SOURCE_DIR}/Samples/Common/include/SamplePlugin.h
 	${PROJECT_SOURCE_DIR}/Samples/Common/include/SdkSample.h
 
+  # just another sample browser
+  ${PROJECT_SOURCE_DIR}/Samples/Browser/include/AnotherSampleBrowser.h
+  ${PROJECT_SOURCE_DIR}/Samples/Browser/src/AnotherSampleBrowser.cpp
+  
+  # instance
   ${PROJECT_SOURCE_DIR}/Samples/Browser/include/Instance.h
   ${PROJECT_SOURCE_DIR}/Samples/Browser/src/Instance.cpp
+
+  # Tutorial application
+  ${PROJECT_SOURCE_DIR}/Samples/Browser/include/TutorialApplication.h
+  ${PROJECT_SOURCE_DIR}/Samples/Browser/src/TutorialApplication.cpp
 )
 
 set(SOURCE_FILES ${PROJECT_SOURCE_DIR}/Samples/Browser/src/SampleBrowser.cpp)

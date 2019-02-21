@@ -26,6 +26,7 @@ public:
     }
     
 public:
+    Ogre::SceneManager *scnMgr;
     OgreBites::TrayManager *mTrayMgr;
     bool isShowBackDrop;
     

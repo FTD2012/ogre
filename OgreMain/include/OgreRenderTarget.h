@@ -235,7 +235,7 @@ namespace Ogre {
             |-------------|------------------------------------|
             | WINDOW      | The native window handle. (X11 Window XID/ HWND / NSWindow*) |
             | HWND        | deprecated (same as WINDOW) |
-            | GL_FBOID | the id of the OpenGL framebuffer object |
+            | GL_FBOID    | the id of the OpenGL framebuffer object |
             | GL_MULTISAMPLEFBOID | the id of the OpenGL framebuffer object used for multisampling |
             | GLFBO | id of the screen OpenGL framebuffer object on iOS |
             | GLCONTEXT   | deprecated, do not use |

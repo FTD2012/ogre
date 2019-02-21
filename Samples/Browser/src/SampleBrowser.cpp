@@ -45,7 +45,9 @@ ndk_helper::PinchDetector OgreAndroidBridge::mPinchGesture;
 #endif
 
 #include "SampleBrowser.h"
+#include "AnotherSampleBrowser.h"
 #include "Instance.h"
+#include "TutorialApplication.h"
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WINRT
 // short version of SDL_winrt_main_NonXAML.cpp
@@ -98,12 +100,13 @@ int main(int argc, char *argv[]) {
             // get -1, which is fine.
             startUpSampleIdx = Ogre::StringConverter::parseInt(Ogre::String(argv[1]), -1);
         }
-//        OgreBites::SampleBrowser brows (nograb, startUpSampleIdx);
-//        brows.go();
+                
+        OgreBites::AnotherSampleBrowser brows (nograb, startUpSampleIdx);
+        brows.go();
 
-        Instance app;
-        app.initApp();
-        app.getRoot()->startRendering();
+//        TutorialApplication app;
+//        app.initApp();
+//        app.getRoot()->startRendering();
         return 0;
     }
     catch (Ogre::Exception& e)
