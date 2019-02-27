@@ -1809,7 +1809,7 @@ void SceneManager::renderVisibleObjectsDefaultSequence(void)
 //-----------------------------------------------------------------------
 void SceneManager::SceneMgrQueuedRenderableVisitor::visit(const Pass* p, RenderableList& rs)
 {
-    // Give SM a chance to eliminate this pass
+    // Give SM a chance to eliminate(淘汰) this pass
     if (!targetSceneMgr->validatePassForRendering(p))
         return;
 

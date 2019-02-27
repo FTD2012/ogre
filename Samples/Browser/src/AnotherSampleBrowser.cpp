@@ -126,6 +126,7 @@ void AnotherSampleBrowser::setup()
      // Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
 
      createDummyScene();
+     getRoot()->getSceneManager("DummyScene")->setDisplaySceneNodes(true);
 
 //     mTrayMgr->showLoadingBar(1, 0);
 //     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
@@ -146,6 +147,8 @@ void AnotherSampleBrowser::setupWidgets()
 
     // create main navigation tray
     mTrayMgr->showLogo(TL_RIGHT);
+    mTrayMgr->hideCursor();
+    
 //    mTrayMgr->createSeparator(TL_RIGHT, "LogoSep");
 //    mTrayMgr->createButton(TL_RIGHT, "StartStop", "Start Sample", 120);
 //

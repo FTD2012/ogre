@@ -1,0 +1,9 @@
+prefix=/Users/lvjiaming/WorkSpace/ogre/build/Dependencies
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: zzipfseeko
+Version: 0.13.69
+Requires: zlib
+Libs: -L${libdir} -lzzipfseeko
+Cflags: -I${includedir}

@@ -395,7 +395,8 @@ namespace Ogre {
         std::unique_ptr<RenderQueue> mRenderQueue;
         bool mLastRenderQueueInvocationCustom;
 
-        /// The rendering system to send the scene to
+        /// The rendering system to send the scene to.
+        /// @get getDestinationRenderSystem | @_set setDestinationRenderSystem
         RenderSystem *mDestRenderSystem;
 
         /** Central list of cameras - for easy memory management and lookup.
