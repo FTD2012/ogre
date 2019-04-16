@@ -101,12 +101,12 @@ int main(int argc, char *argv[]) {
             startUpSampleIdx = Ogre::StringConverter::parseInt(Ogre::String(argv[1]), -1);
         }
                 
-        OgreBites::AnotherSampleBrowser brows (nograb, startUpSampleIdx);
-        brows.go();
+//        OgreBites::SampleBrowser brows (nograb, startUpSampleIdx);
+//        brows.go();
 
-//        TutorialApplication app;
-//        app.initApp();
-//        app.getRoot()->startRendering();
+        Instance app;
+        app.initApp();
+        app.getRoot()->startRendering();
         return 0;
     }
     catch (Ogre::Exception& e)

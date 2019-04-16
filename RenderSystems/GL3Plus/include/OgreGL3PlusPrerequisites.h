@@ -98,7 +98,7 @@ namespace Ogre {
 #   define __PRETTY_FUNCTION__ __FUNCTION__
 #endif
 
-#define ENABLE_GL_CHECK 0
+#define ENABLE_GL_CHECK 1
 #define ENABLE_GL_DEBUG_OUTPUT 0
 
 #if ENABLE_GL_CHECK
@@ -124,6 +124,10 @@ namespace Ogre {
         sprintf(msgBuf, "OpenGL error 0x%04X %s in %s at line %i for %s\n", e, errorString, __PRETTY_FUNCTION__, __LINE__, tokens[0].c_str()); \
         LogManager::getSingleton().logMessage(msgBuf, LML_CRITICAL); \
     } \
+    char msgBuf[4096]; \
+    StringVector tokens = StringUtil::split(#glFunc, "("); \
+    sprintf(msgBuf, "OpenGL exec [%s] in %s at line %i \n", tokens[0].c_str(), __PRETTY_FUNCTION__, __LINE__); \
+    LogManager::getSingleton().logMessage(msgBuf, LML_CRITICAL); \
 }
 #else
 #   define OGRE_CHECK_GL_ERROR(glFunc) { glFunc; }

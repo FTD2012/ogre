@@ -819,27 +819,26 @@ namespace OgreBites
             mWindow = getRenderWindow();
             addInputListener(this);
             if(mGrabInput) setWindowGrab();
-            setupWidgets();
-// #ifdef OGRE_STATIC_LIB
-//             mPluginNameMap["DefaultSamples"] = new DefaultSamplesPlugin();
-// #   ifdef SAMPLES_INCLUDE_PLAYPEN
-//             mPluginNameMap["PlaypenTests"] = new  PlaypenTestPlugin();
-// #   endif
-// #endif
+ #ifdef OGRE_STATIC_LIB
+             mPluginNameMap["DefaultSamples"] = new DefaultSamplesPlugin();
+ #   ifdef SAMPLES_INCLUDE_PLAYPEN
+             mPluginNameMap["PlaypenTests"] = new  PlaypenTestPlugin();
+ #   endif
+ #endif
 
-//             Sample* startupSample = loadSamples();
+             Sample* startupSample = loadSamples();
 
-//             // create template material for sample thumbnails
-//             Ogre::MaterialPtr thumbMat = Ogre::MaterialManager::getSingleton().create("SdkTrays/SampleThumbnail", "Essential");
-//             thumbMat->getTechnique(0)->getPass(0)->createTextureUnitState();
+             // create template material for sample thumbnails
+             Ogre::MaterialPtr thumbMat = Ogre::MaterialManager::getSingleton().create("SdkTrays/SampleThumbnail", "Essential");
+             thumbMat->getTechnique(0)->getPass(0)->createTextureUnitState();
 
-//             setupWidgets();
-//             windowResized(mWindow);   // adjust menus for resolution
+             setupWidgets();
+             windowResized(mWindow);   // adjust menus for resolution
 
-//             // if this is our first time running, and there's a startup sample, run it
-//             if (startupSample && mFirstRun){
-//                 runSample(startupSample);
-//             }
+             // if this is our first time running, and there's a startup sample, run it
+             if (startupSample && mFirstRun){
+                 runSample(startupSample);
+             }
         }
 
     protected:
@@ -1090,7 +1089,7 @@ namespace OgreBites
             }
             mRendererMenu->setItems(rsNames);
 
-            // populateSampleMenus();
+             populateSampleMenus();
         }
 
         /*-----------------------------------------------------------------------------

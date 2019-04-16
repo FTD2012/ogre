@@ -31,11 +31,11 @@ THE SOFTWARE.
 
 #include "OgreOSXCocoaContext.h"
 
-#include <AppKit/NSWindow.h>
 #include <QuartzCore/CVDisplayLink.h>
 #include "OgreOSXCocoaView.h"
 #include "OgreGLRenderTarget.h"
 
+#include <AppKit/NSWindow.h>
 typedef NSUInteger NSWindowStyleMask; // NSWindowStyleMask was declared only since OSX 10.12 SDK
 
 @interface OgreGLWindow : NSWindow

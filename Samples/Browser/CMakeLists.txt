@@ -214,9 +214,9 @@ if (APPLE)
         ${PROJECT_SOURCE_DIR}/RenderSystems/GL/include/OSX
         )
 
-	target_link_libraries(SampleBrowser ${OPENGL_gl_LIBRARY} ${CoreVideo_LIBRARIES})
+	  target_link_libraries(SampleBrowser ${OPENGL_gl_LIBRARY} ${CoreVideo_LIBRARIES})
 
-   set_target_properties(SampleBrowser PROPERTIES
+    set_target_properties(SampleBrowser PROPERTIES
         LINK_FLAGS "-framework IOKit -framework Cocoa -framework Carbon -framework CoreVideo -framework ApplicationServices")
 
     # Add the path where the Ogre framework was found, if it has been found somewhere
@@ -232,13 +232,13 @@ if (APPLE)
 	
     set(OGRE_OSX_BUILD_CONFIGURATION "$(PLATFORM_NAME)/$(CONFIGURATION)")
     set(OGRE_BUILT_FRAMEWORK "$(PLATFORM_NAME)/$(CONFIGURATION)")
-	set (OGRE_SAMPLE_CONTENTS_PATH 
-		${PROJECT_BINARY_DIR}/bin/$(CONFIGURATION)/SampleBrowser.app/Contents)
-	add_custom_command(TARGET SampleBrowser POST_BUILD
-		COMMAND mkdir ARGS -p ${OGRE_SAMPLE_CONTENTS_PATH}/Frameworks
-		COMMAND ln ARGS -s -f ${PROJECT_BINARY_DIR}/lib/${OGRE_BUILT_FRAMEWORK}/Ogre.framework ${OGRE_SAMPLE_CONTENTS_PATH}/Frameworks/
-		COMMAND ln ARGS -s -f ${Cg_LIBRARY_REL}                                             ${OGRE_SAMPLE_CONTENTS_PATH}/Frameworks/
-		)
+	  set (OGRE_SAMPLE_CONTENTS_PATH 
+		  ${PROJECT_BINARY_DIR}/bin/$(CONFIGURATION)/SampleBrowser.app/Contents)
+	  add_custom_command(TARGET SampleBrowser POST_BUILD
+	  	COMMAND mkdir ARGS -p ${OGRE_SAMPLE_CONTENTS_PATH}/Frameworks
+	  	COMMAND ln ARGS -s -f ${PROJECT_BINARY_DIR}/lib/${OGRE_BUILT_FRAMEWORK}/Ogre.framework ${OGRE_SAMPLE_CONTENTS_PATH}/Frameworks/
+	  	COMMAND ln ARGS -s -f ${Cg_LIBRARY_REL}                                             ${OGRE_SAMPLE_CONTENTS_PATH}/Frameworks/
+	  	)
 	# now cfg files
 	if(OGRE_SDK_BUILD)
 	add_custom_command(TARGET SampleBrowser POST_BUILD

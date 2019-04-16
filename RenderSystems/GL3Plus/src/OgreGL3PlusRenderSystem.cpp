@@ -2014,7 +2014,7 @@ namespace Ogre {
         //
         // Note:
         //  1. Even if both previous and current are the same object, we can't
-        //     bypass re-bind completely since the object itself may be modified.
+        //     bypass(vt. 疏通，忽视) re-bind completely since the object itself may be modified.
         //     But we can bypass unbind based on the assumption that the object's
         //     internal GL program type shouldn't change after object creation.
         //     The behavior of binding to a GL program type twice

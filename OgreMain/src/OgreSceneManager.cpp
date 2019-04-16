@@ -1784,6 +1784,7 @@ void SceneManager::renderVisibleObjectsDefaultSequence(void)
                 break;
             }
 
+            LogManager::getSingleton().logMessage("pGroup id = " + Ogre::StringConverter::toString(qId));
             _renderQueueGroupObjects(pGroup, QueuedRenderableCollection::OM_PASS_GROUP);
 
             // Fire queue ended event
@@ -2001,7 +2002,7 @@ void SceneManager::issueRenderWithLights(Renderable* rend, const Pass* pass,
 
     fireRenderSingleObject(rend, pass, mAutoParamDataSource.get(), pLightListToUse, false);
 
-    // optional light scissoring & clipping
+    // optional light scissoring(n. 裁剪) & clipping
     ClipResult scissored = CLIPPED_NONE;
     ClipResult clipped = CLIPPED_NONE;
     if (pLightListToUse && lightScissoringClipping &&
@@ -2077,7 +2078,7 @@ void SceneManager::renderSingleObject(Renderable* rend, const Pass* pass,
         ++unit;
     }
 
-    // Sort out normalisation
+    // Sort out normalisation(n. 标准化)
     // Assume first world matrix representative - shaders that use multiple
     // matrices should control renormalisation themselves
     if ((pass->getNormaliseNormals() || mNormaliseNormalsOnScale) &&

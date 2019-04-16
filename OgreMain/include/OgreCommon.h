@@ -214,10 +214,10 @@ namespace Ogre {
     {
         /** No shadows */
         SHADOWTYPE_NONE = 0x00,
-        /** Mask for additive shadows (not for direct use, use  SHADOWTYPE_ enum instead)
+        /** Mask for additive(n. 添加剂，adj. 附加的 via@Baidu) shadows (not for direct use, use  SHADOWTYPE_ enum instead)
         */
         SHADOWDETAILTYPE_ADDITIVE = 0x01,
-        /** Mask for modulative shadows (not for direct use, use  SHADOWTYPE_ enum instead)
+        /** Mask for modulative(调整的，变调的 via@Baidu) shadows (not for direct use, use  SHADOWTYPE_ enum instead)
         */
         SHADOWDETAILTYPE_MODULATIVE = 0x02,
         /** Mask for integrated shadows (not for direct use, use SHADOWTYPE_ enum instead)
